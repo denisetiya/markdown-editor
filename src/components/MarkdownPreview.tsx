@@ -79,6 +79,9 @@ const MarkdownPreview: React.FC<MarkdownPreviewProps> = ({ markdown }) => {
   const renderRegularMarkdown = (text: string) => {
     let html = text;
     
+    // Handle images first to prevent interference from other replacements
+    html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/gim, '<img src="$2" alt="$1" class="max-w-full h-auto rounded-xl border border-gray-700 my-6 shadow-lg hover:shadow-xl transition-shadow duration-300" />')
+    
     // Handle all code blocks
     html = html.replace(/```(\w+)?\n([\s\S]*?)```/gim, (_match, lang, code) => {
       const langLabel = lang ? `<div class="text-xs font-medium text-gray-200 bg-gradient-to-r from-gray-700 to-gray-800 px-3 py-2 rounded-t-lg">${lang}</div>` : '';
@@ -126,9 +129,6 @@ const MarkdownPreview: React.FC<MarkdownPreviewProps> = ({ markdown }) => {
       
       // Links
       .replace(/\[([^\]]+)\]\(([^)]+)\)/gim, '<a href="$2" target="_blank" class="text-blue-400 hover:text-blue-300 underline transition-colors duration-200">$1</a>')
-      
-      // Images
-      .replace(/!\[([^\]]*)\]\(([^)]+)\)/gim, '<img src="$2" alt="$1" class="max-w-full h-auto rounded-xl border border-gray-700 my-6 shadow-lg hover:shadow-xl transition-shadow duration-300" />')
       
       // Horizontal rule
       .replace(/^---$/gim, '<hr class="my-10 border-t border-gray-700" />')

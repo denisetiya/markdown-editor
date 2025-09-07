@@ -7,6 +7,7 @@ import TableModal from './TableModal';
 import FolderModal from './FolderModal';
 import MermaidModal from './MermaidModal';
 import CodeGeneratorModal from './CodeGeneratorModal';
+import ImageModal from './ImageModal';
 
 interface MarkdownEditorProps {
   isAutoSaveEnabled?: boolean;
@@ -325,6 +326,17 @@ graph TD
           onClose={() => setShowModal(null)}
           onGenerate={(code) => {
             insertTextAtCursor(code, '', true);
+            setShowModal(null);
+          }}
+        />
+      )}
+      
+      {showModal === 'image' && (
+        <ImageModal 
+          onClose={() => setShowModal(null)}
+          onInsert={(altText, imageUrl) => {
+            const imageMarkdown = `![${altText}](${imageUrl})`;
+            insertTextAtCursor(imageMarkdown, '', true);
             setShowModal(null);
           }}
         />
