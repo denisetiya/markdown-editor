@@ -4,7 +4,7 @@ import {
   Quote, Heading1, Heading2, Heading3, Smile, GitBranch,
   Zap, Copy, Download, Upload, Hash, Undo, Redo,
   Minus as MinusIcon, Maximize2, Minimize2, Monitor, Square, Eye,
-  Braces
+  Braces, Image
 } from 'lucide-react';
 
 interface ToolbarProps {
@@ -203,6 +203,13 @@ const Toolbar: React.FC<ToolbarProps> = ({
               title="Emoji"
             >
               <Smile size={14} />
+            </button>
+            <button
+              onClick={() => setShowModal('image')}
+              className="px-3 py-2 rounded-lg hover:bg-gray-700 flex items-center transition-all duration-200 transform hover:scale-105"
+              title="Insert Image"
+            >
+              <Image size={14} />
             </button>
             <button
               onClick={() => setShowModal('table')}
