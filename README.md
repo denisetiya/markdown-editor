@@ -2,7 +2,7 @@
 
 A powerful, modern, and feature-rich Markdown editor built with React, TypeScript, and Tailwind CSS. Experience seamless writing with real-time preview, syntax highlighting, and advanced formatting tools.
 
-![Markdown Editor Preview](public/logo.png)
+<img src="public/logo.png" alt="Markdown Editor Preview" width="200" height="200">
 
 ## 🌟 Features
 
