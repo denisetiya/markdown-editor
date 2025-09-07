@@ -9,7 +9,7 @@ export const Footer: React.FC = () => {
       </div>
       <div>
         <a 
-          href="https://github.com/denisetiya" 
+          href="https://github.com/denisetiya/markdown-editor" 
           target="_blank" 
           rel="noopener noreferrer"
           className="text-blue-400 hover:text-blue-300 transition-colors flex items-center"
