@@ -1,15 +1,17 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
-import Toolbar from './Toolbar';
+import Toolbar from '../components/Toolbar';
 import MainContent from './MainContent';
 import type { MainContentHandle } from './MainContent';
-import EmojiPicker from './EmojiPicker';
-import TableModal from './TableModal';
-import FolderModal from './FolderModal';
-import MermaidModal from './MermaidModal';
-import CodeGeneratorModal from './CodeGeneratorModal';
-import ImageModal from './ImageModal';
-import BadgeModal from './BadgeModal';
-import TableOfContentsModal from './TableOfContentsModal';
+import { EmojiPicker } from '../components/pickers';
+import { 
+  TableModal, 
+  FolderModal, 
+  MermaidModal, 
+  CodeGeneratorModal, 
+  ImageModal, 
+  BadgeModal, 
+  TableOfContentsModal 
+} from '../components/modals';
 
 interface MarkdownEditorProps {
   isAutoSaveEnabled?: boolean;

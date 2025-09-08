@@ -6,7 +6,7 @@ import {
   Minus as MinusIcon, Maximize2, Minimize2, Monitor, Square, Eye,
   Braces, Image, ChevronDown, Type, Layers, FileText, AlignCenter, Tag
 } from 'lucide-react';
-import type { MainContentHandle } from './MainContent';
+import type { MainContentHandle } from '../pages/MainContent';
 
 interface ToolbarProps {
   markdown: string;

@@ -1,5 +1,5 @@
 import { forwardRef, useImperativeHandle, useRef } from 'react';
-import MarkdownPreview from './MarkdownPreview';
+import MarkdownPreview from '../components/MarkdownPreview';
 
 interface MainContentProps {
   markdown: string;
@@ -650,8 +650,7 @@ const MainContent = forwardRef<MainContentHandle, MainContentProps>(({
               </div>
               <div className="p-4 h-[calc(100%-40px)] overflow-y-auto custom-scrollbar">
                 <MarkdownPreview markdown={markdown} />
-                {/* Add extra margin at the bottom to prevent content from being cut off */}
-                <div className="pb-16"></div>
+                {/* Removed extra padding since diagrams now adjust their height automatically */}
               </div>
             </div>
           </div>

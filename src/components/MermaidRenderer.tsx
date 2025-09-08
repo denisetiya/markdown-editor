@@ -20,11 +20,12 @@ const MermaidRenderer: React.FC<MermaidRendererProps> = ({ chart, id }) => {
       flowchart: {
         useMaxWidth: true,
         htmlLabels: true,
-        curve: 'basis'
+        curve: 'basis',
+        padding: 25  // Increased padding to prevent cutoff
       },
       sequence: {
         diagramMarginX: 50,
-        diagramMarginY: 10,
+        diagramMarginY: 25,  // Increased margin to prevent cutoff
         actorMargin: 50,
         width: 150,
         height: 65,
@@ -33,7 +34,7 @@ const MermaidRenderer: React.FC<MermaidRendererProps> = ({ chart, id }) => {
         noteMargin: 10,
         messageMargin: 35,
         mirrorActors: true,
-        bottomMarginAdj: 1,
+        bottomMarginAdj: 10,  // Increased bottom margin to prevent cutoff
         useMaxWidth: true
       },
       gantt: {
@@ -42,7 +43,21 @@ const MermaidRenderer: React.FC<MermaidRendererProps> = ({ chart, id }) => {
         fontSize: 11,
         gridLineStartPadding: 35,
         leftPadding: 75,
-        topPadding: 50
+        topPadding: 50,
+        rightPadding: 40  // Increased right padding to prevent cutoff
+      },
+      // Add configuration for other diagram types
+      class: {
+        useMaxWidth: true,
+        diagramPadding: 10
+      },
+      state: {
+        useMaxWidth: true,
+        padding: 10
+      },
+      er: {
+        useMaxWidth: true,
+        diagramPadding: 10
       }
     });
 
@@ -68,8 +83,12 @@ const MermaidRenderer: React.FC<MermaidRendererProps> = ({ chart, id }) => {
               svgElement.style.maxWidth = '100%';
               svgElement.style.width = '100%';
               svgElement.style.height = 'auto';
-              svgElement.style.maxHeight = '400px'; // Limit height
+              svgElement.style.maxHeight = '380px'; // Reduced to account for padding
               svgElement.style.backgroundColor = 'transparent';
+              // Add padding to prevent cutoff
+              svgElement.style.padding = '15px'; // Increased padding
+              svgElement.style.boxSizing = 'border-box';
+              svgElement.style.overflow = 'visible'; // Allow overflow to be visible
             }
           } else {
             // If chart is invalid, show error message
@@ -116,7 +135,8 @@ const MermaidRenderer: React.FC<MermaidRendererProps> = ({ chart, id }) => {
         style={{ 
           minHeight: '100px',
           maxHeight: '400px',
-          overflow: 'auto'
+          overflow: 'auto',
+          padding: '10px'  // Increased padding
         }}
       />
     </div>
