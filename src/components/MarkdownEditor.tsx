@@ -8,6 +8,8 @@ import FolderModal from './FolderModal';
 import MermaidModal from './MermaidModal';
 import CodeGeneratorModal from './CodeGeneratorModal';
 import ImageModal from './ImageModal';
+import BadgeModal from './BadgeModal';
+import TableOfContentsModal from './TableOfContentsModal';
 
 interface MarkdownEditorProps {
   isAutoSaveEnabled?: boolean;
@@ -340,6 +342,29 @@ graph TD
         <ImageModal 
           onClose={() => setShowModal(null)}
           onInsert={handleImageInsert}
+        />
+      )}
+      {showModal === 'badge' && (
+        <BadgeModal 
+          onClose={() => setShowModal(null)}
+          onInsert={(badgeMarkdown) => {
+            if (mainContentRef.current) {
+              mainContentRef.current.insertBadge(badgeMarkdown);
+            }
+            setShowModal(null);
+          }}
+        />
+      )}
+      {showModal === 'toc' && (
+        <TableOfContentsModal 
+          onClose={() => setShowModal(null)}
+          onInsert={(tocMarkdown) => {
+            if (mainContentRef.current) {
+              mainContentRef.current.insertTableOfContents(tocMarkdown);
+            }
+            setShowModal(null);
+          }}
+          markdown={markdown}
         />
       )}
       
