@@ -60,9 +60,9 @@
 
 /* Smooth transitions */
 * {
-  transition-property: background-color, border-color, color, fill, stroke;
+  transition-property: background-color, border-color, color, fill, stroke, transform;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
+  transition-duration: 300ms;
 }
 
 /* Focus styles */
@@ -133,6 +133,92 @@
   --tw-gradient-to: #9333ea;
 }
 
+.from-green-600 {
+  --tw-gradient-from: #16a34a;
+  --tw-gradient-to: rgb(22 163 74 / 0);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+.to-teal-600 {
+  --tw-gradient-to: #0d9488;
+}
+
+.from-yellow-600 {
+  --tw-gradient-from: #ca8a04;
+  --tw-gradient-to: rgb(202 138 4 / 0);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+.to-orange-600 {
+  --tw-gradient-to: #ea580c;
+}
+
+.from-indigo-600 {
+  --tw-gradient-from: #4f46e5;
+  --tw-gradient-to: rgb(79 70 229 / 0);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+.from-pink-600 {
+  --tw-gradient-from: #db2777;
+  --tw-gradient-to: rgb(219 39 119 / 0);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+.to-rose-600 {
+  --tw-gradient-to: #e11d48;
+}
+
+.from-cyan-600 {
+  --tw-gradient-from: #0891b2;
+  --tw-gradient-to: rgb(8 145 178 / 0);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+.to-blue-600 {
+  --tw-gradient-to: #2563eb;
+}
+
+.from-emerald-600 {
+  --tw-gradient-from: #059669;
+  --tw-gradient-to: rgb(5 150 105 / 0);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+.to-green-600 {
+  --tw-gradient-to: #16a34a;
+}
+
+.from-amber-600 {
+  --tw-gradient-from: #d97706;
+  --tw-gradient-to: rgb(217 119 6 / 0);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+.to-yellow-600 {
+  --tw-gradient-to: #ca8a04;
+}
+
+.from-violet-600 {
+  --tw-gradient-from: #7c3aed;
+  --tw-gradient-to: rgb(124 58 237 / 0);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+.to-purple-600 {
+  --tw-gradient-to: #9333ea;
+}
+
+.from-red-600 {
+  --tw-gradient-from: #dc2626;
+  --tw-gradient-to: rgb(220 38 38 / 0);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+.to-pink-600 {
+  --tw-gradient-to: #db2777;
+}
+
 /* Shadow enhancements */
 .shadow-lg {
   --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
@@ -152,6 +238,12 @@
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
+.shadow-sm {
+  --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
 /* Border enhancements */
 .border-gray-700 {
   --tw-border-opacity: 1;
@@ -164,6 +256,10 @@
 
 .rounded-lg {
   border-radius: 0.5rem;
+}
+
+.rounded-md {
+  border-radius: 0.375rem;
 }
 
 /* Text enhancements */
@@ -182,6 +278,10 @@
   color: rgb(209 213 219 / var(--tw-text-opacity));
 }
 
+.font-medium {
+  font-weight: 500;
+}
+
 /* Background enhancements */
 .bg-gray-800 {
   --tw-bg-opacity: 1;
@@ -191,6 +291,10 @@
 .bg-gray-900 {
   --tw-bg-opacity: 1;
   background-color: rgb(17 24 39 / var(--tw-bg-opacity));
+}
+
+.bg-gray-750 {
+  background-color: #374151;
 }
 
 /* Code block enhancements */
@@ -214,5 +318,54 @@ code {
     --tw-space-y-reverse: 0;
     margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
     margin-bottom: calc(0.5rem * var(--tw-space-y-reverse));
+  }
+}
+
+/* Toolbar specific responsive improvements */
+@media (max-width: 640px) {
+  .toolbar-group:not(:first-child) {
+    margin-top: 0.25rem;
+  }
+  
+  .toolbar-group.border-l {
+    border-left-width: 0;
+    padding-left: 0;
+  }
+  
+  .toolbar-group.border-l:first-of-type {
+    border-left-width: 1px;
+    padding-left: 0.25rem;
+  }
+}
+
+/* Dropdown menu for special elements on small screens */
+.relative.group:hover .group-hover\:block,
+.relative.group:focus-within .group-hover\:block {
+  display: block;
+}
+
+/* Enhanced toolbar styles */
+.toolbar-gradient {
+  background: linear-gradient(90deg, #1f2937 0%, #111827 100%);
+}
+
+/* Smooth rotation for dropdown arrows */
+.transform.transition-transform {
+  transition: transform 0.3s ease;
+}
+
+/* Improved dropdown menu styling */
+.dropdown-menu {
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

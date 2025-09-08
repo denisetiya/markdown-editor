@@ -240,6 +240,11 @@ graph TD
     insertTextAtCursor(emoji, '');
   };
 
+  const handleImageInsert = (altText: string, imageUrl: string) => {
+    const imageMarkdown = `![${altText}](${imageUrl})`;
+    insertTextAtCursor(imageMarkdown, '', true);
+  };
+
   return (
     <div className="min-h-screen bg-gray-900 text-gray-100">
       <Toolbar
@@ -256,6 +261,7 @@ graph TD
         setFullscreenMode={setFullscreenMode}
         setShowEmojiPicker={setShowEmojiPicker}
         setShowModal={setShowModal}
+        mainContentRef={mainContentRef}
       />
       
       <MainContent
@@ -330,15 +336,10 @@ graph TD
           }}
         />
       )}
-      
       {showModal === 'image' && (
         <ImageModal 
           onClose={() => setShowModal(null)}
-          onInsert={(altText, imageUrl) => {
-            const imageMarkdown = `![${altText}](${imageUrl})`;
-            insertTextAtCursor(imageMarkdown, '', true);
-            setShowModal(null);
-          }}
+          onInsert={handleImageInsert}
         />
       )}
       

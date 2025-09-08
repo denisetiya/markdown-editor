@@ -137,11 +137,15 @@ const MarkdownPreview: React.FC<MarkdownPreviewProps> = ({ markdown }) => {
       // Blockquotes
       .replace(/^> (.*)$/gim, '<blockquote class="border-l-4 border-blue-500 pl-6 py-4 my-6 bg-gradient-to-r from-gray-800/50 to-gray-900/50 italic text-gray-200 rounded-r-lg shadow-md">$1</blockquote>')
       
-      // Lists
+      // Lists - Improved handling for better responsiveness
       .replace(/^\s*\* (.*)$/gim, '<li class="ml-6 mb-2 list-disc text-gray-200">$1</li>')
       .replace(/^\s*- (.*)$/gim, '<li class="ml-6 mb-2 list-disc text-gray-200">$1</li>')
       .replace(/^\s*\+ (.*)$/gim, '<li class="ml-6 mb-2 list-disc text-gray-200">$1</li>')
       .replace(/^\s*(\d+)\. (.*)$/gim, '<li class="ml-6 mb-2 list-decimal text-gray-200">$2</li>');
+
+    // Wrap list items in proper ul/ol tags
+    html = html.replace(/(<li class="ml-6 mb-2 list-disc[^>]*>.*?<\/li>\s*)+/gim, '<ul class="my-4 space-y-2">$&</ul>');
+    html = html.replace(/(<li class="ml-6 mb-2 list-decimal[^>]*>.*?<\/li>\s*)+/gim, '<ol class="my-4 space-y-2 list-decimal">$&</ol>');
 
     // Convert paragraphs - split by double newlines and wrap non-HTML content in paragraphs
     const blocks = html.split(/\n\s*\n/);
@@ -167,7 +171,7 @@ const MarkdownPreview: React.FC<MarkdownPreviewProps> = ({ markdown }) => {
   };
 
   return (
-    <div className="prose prose-lg max-w-none" style={{ lineHeight: '1.7', color: '#E5E7EB' }}>
+    <div className="prose prose-lg max-w-none w-full" style={{ lineHeight: '1.7', color: '#E5E7EB' }}>
       {renderMarkdown(markdown)}
     </div>
   );
