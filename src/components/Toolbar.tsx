@@ -4,7 +4,7 @@ import {
   Quote, Heading1, Heading2, Heading3, Smile, GitBranch,
   Zap, Copy, Download, Upload, Hash, Undo, Redo,
   Minus as MinusIcon, Maximize2, Minimize2, Monitor, Square, Eye,
-  Braces, Image, ChevronDown, Type, Layers, FileText
+  Braces, Image, ChevronDown, Type, Layers, FileText, AlignCenter, Tag
 } from 'lucide-react';
 import type { MainContentHandle } from './MainContent';
 
@@ -94,6 +94,23 @@ const Toolbar: React.FC<ToolbarProps> = ({
     if (mainContentRef.current) {
       mainContentRef.current.toggleCode();
     }
+  };
+
+  // Function to toggle center alignment
+  const toggleCenterAlign = () => {
+    if (mainContentRef.current) {
+      mainContentRef.current.toggleCenterAlign();
+    }
+  };
+
+  // Function to insert badge
+  const insertBadge = () => {
+    setShowModal('badge');
+  };
+
+  // Function to generate table of contents
+  const generateTableOfContents = () => {
+    setShowModal('toc');
   };
 
   return (
@@ -199,6 +216,15 @@ const Toolbar: React.FC<ToolbarProps> = ({
                   title="Link"
                 >
                   <Link size={16} />
+                </button>
+                
+                {/* Alignment Button */}
+                <button
+                  onClick={toggleCenterAlign}
+                  className="px-3 py-2 rounded-lg hover:bg-gradient-to-r hover:from-purple-600 hover:to-indigo-600 flex items-center transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg"
+                  title="Center Align"
+                >
+                  <AlignCenter size={16} />
                 </button>
                 
                 {/* Heading Buttons - Moved out of dropdown */}
@@ -311,6 +337,20 @@ const Toolbar: React.FC<ToolbarProps> = ({
                     >
                       <Braces size={16} className="mr-2" />
                       <span>Code Generator</span>
+                    </button>
+                    <button
+                      onClick={insertBadge}
+                      className="w-full px-4 py-2 text-left hover:bg-gray-700 flex items-center transition-colors duration-200"
+                    >
+                      <Tag size={16} className="mr-2" />
+                      <span>Badge</span>
+                    </button>
+                    <button
+                      onClick={generateTableOfContents}
+                      className="w-full px-4 py-2 text-left hover:bg-gray-700 flex items-center transition-colors duration-200"
+                    >
+                      <ListOrdered size={16} className="mr-2" />
+                      <span>Table of Contents</span>
                     </button>
                   </div>
                 </div>

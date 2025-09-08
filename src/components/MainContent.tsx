@@ -16,6 +16,9 @@ export interface MainContentHandle {
   toggleBold: () => void;
   toggleItalic: () => void;
   toggleCode: () => void;
+  insertBadge: (badgeMarkdown: string) => void;
+  insertTableOfContents: (tocMarkdown: string) => void;
+  toggleCenterAlign: () => void;
 }
 
 const MainContent = forwardRef<MainContentHandle, MainContentProps>(({
@@ -503,6 +506,65 @@ const MainContent = forwardRef<MainContentHandle, MainContentProps>(({
     }
   };
 
+  // Function to insert badge markdown
+  const insertBadge = (badgeMarkdown: string) => {
+    insertTextAtCursor(badgeMarkdown, '\n', true);
+  };
+
+  // Function to insert table of contents
+  const insertTableOfContents = (tocMarkdown: string) => {
+    insertTextAtCursor(tocMarkdown, '\n\n', true);
+  };
+
+  // Function to toggle center alignment for selected text
+  const toggleCenterAlign = () => {
+    const textarea = textareaRef.current;
+    if (!textarea) return;
+
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+    const selectedText = markdown.substring(start, end);
+
+    if (!selectedText) {
+      // If no text is selected, insert center alignment tags
+      insertTextAtCursor('<div align="center">\n\n', '\n\n</div>', true);
+      return;
+    }
+
+    // Check if text is already center aligned
+    const isAlreadyCentered = selectedText.trim().startsWith('<div align="center">') && 
+                              selectedText.trim().endsWith('</div>');
+    
+    if (isAlreadyCentered) {
+      // Remove center alignment
+      const unalignedText = selectedText.trim()
+        .replace(/^<div align="center">\s*/, '')
+        .replace(/\s*<\/div>$/, '')
+        .trim();
+      
+      const newMarkdown = markdown.substring(0, start) + unalignedText + markdown.substring(end);
+      setMarkdown(newMarkdown);
+      
+      // Focus back to textarea and adjust selection
+      setTimeout(() => {
+        textarea.focus();
+        textarea.setSelectionRange(start, start + unalignedText.length);
+      }, 0);
+    } else {
+      // Add center alignment
+      const alignedText = `<div align="center">\n\n${selectedText}\n\n</div>`;
+      
+      const newMarkdown = markdown.substring(0, start) + alignedText + markdown.substring(end);
+      setMarkdown(newMarkdown);
+      
+      // Focus back to textarea and adjust selection
+      setTimeout(() => {
+        textarea.focus();
+        textarea.setSelectionRange(start, start + alignedText.length);
+      }, 0);
+    }
+  };
+
   // Handle tab key press for indentation
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === 'Tab') {
@@ -551,7 +613,10 @@ const MainContent = forwardRef<MainContentHandle, MainContentProps>(({
     toggleHeading,
     toggleBold,
     toggleItalic,
-    toggleCode
+    toggleCode,
+    insertBadge,
+    insertTableOfContents,
+    toggleCenterAlign
   }));
 
   return (
