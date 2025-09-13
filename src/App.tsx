@@ -1,5 +1,5 @@
 import { EditorProvider } from './components/EditorProvider';
-import { EditorLayout } from './components/EditorLayout';
+import { EditorLayout } from './components/layout';
 import './index.css';
 
 function App() {

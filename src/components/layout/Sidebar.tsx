@@ -6,7 +6,7 @@ interface SidebarProps {
   toggleSidebar: () => void;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
+export const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
   const [activeItem, setActiveItem] = useState('settings');
   const [autoSaveEnabled, setAutoSaveEnabled] = useState(() => {
     // Initialize from localStorage or default to true
@@ -257,5 +257,3 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
     </>
   );
 };
-
-export default Sidebar;

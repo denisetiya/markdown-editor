@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useEditor } from '../hooks';
+import { useEditor } from '../../hooks';
 import { Header } from './Header';
 import { Footer } from './Footer';
-import MarkdownEditor from './MarkdownEditor';
+import MarkdownEditor from '../../pages/MarkdownEditor';
 import { StatusBar } from './StatusBar';
-import Sidebar from './Sidebar';
+import { Sidebar } from './Sidebar';
 
 export const EditorLayout: React.FC = () => {
   const { state } = useEditor();

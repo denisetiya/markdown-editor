@@ -1,5 +1,5 @@
 import React from 'react';
-import { useEditor } from '../hooks';
+import { useEditor } from '../../hooks';
 
 export const StatusBar: React.FC = () => {
   const { state } = useEditor();
