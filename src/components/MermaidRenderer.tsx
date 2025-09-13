@@ -21,11 +21,11 @@ const MermaidRenderer: React.FC<MermaidRendererProps> = ({ chart, id }) => {
         useMaxWidth: true,
         htmlLabels: true,
         curve: 'basis',
-        padding: 25  // Increased padding to prevent cutoff
+        padding: 10  // Increased padding to prevent cutoff
       },
       sequence: {
         diagramMarginX: 50,
-        diagramMarginY: 25,  // Increased margin to prevent cutoff
+        diagramMarginY: 70,  // Increased margin to prevent cutoff
         actorMargin: 50,
         width: 150,
         height: 65,
@@ -34,7 +34,7 @@ const MermaidRenderer: React.FC<MermaidRendererProps> = ({ chart, id }) => {
         noteMargin: 10,
         messageMargin: 35,
         mirrorActors: true,
-        bottomMarginAdj: 10,  // Increased bottom margin to prevent cutoff
+        bottomMarginAdj: 20,  // Increased bottom margin to prevent cutoff
         useMaxWidth: true
       },
       gantt: {
