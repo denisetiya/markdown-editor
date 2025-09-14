@@ -9,14 +9,37 @@ function App() {
 
   // Check if user is on a mobile device
   useEffect(() => {
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    const checkMobile = () => {
+      // More comprehensive mobile detection
+      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mobi/i.test(navigator.userAgent) || 
+                       window.innerWidth <= 768;
+      
+      // Check if user has already acknowledged the mobile warning
+      const hasAcknowledged = localStorage.getItem('mobileWarningAcknowledged') === 'true';
+      
+      console.log('User Agent:', navigator.userAgent);
+      console.log('Window Width:', window.innerWidth);
+      console.log('Is mobile:', isMobile);
+      console.log('Has acknowledged:', hasAcknowledged);
+      
+      if (isMobile && !hasAcknowledged) {
+        console.log('Showing mobile warning modal');
+        setShowMobileWarning(true);
+      } else {
+        console.log('Not showing mobile warning modal');
+      }
+    };
+
+    // Check on initial load
+    checkMobile();
+
+    // Add resize listener to detect screen size changes
+    window.addEventListener('resize', checkMobile);
     
-    // Check if user has already acknowledged the mobile warning
-    const hasAcknowledged = localStorage.getItem('mobileWarningAcknowledged') === 'true';
-    
-    if (isMobile && !hasAcknowledged) {
-      setShowMobileWarning(true);
-    }
+    // Clean up event listener
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+    };
   }, []);
 
   const handleMobileWarningClose = () => {
