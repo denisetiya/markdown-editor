@@ -17,6 +17,11 @@ export const MobileWarningModal: React.FC<MobileWarningModalProps> = ({ isOpen, 
     }, 300);
   };
 
+  // Update visibility when isOpen prop changes
+  useEffect(() => {
+    setIsVisible(isOpen);
+  }, [isOpen]);
+
   // Close modal when pressing Escape key
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
@@ -43,11 +48,11 @@ export const MobileWarningModal: React.FC<MobileWarningModalProps> = ({ isOpen, 
 
   return (
     <div 
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50 backdrop-blur-sm transition-opacity duration-300"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-transparent backdrop-blur-sm transition-opacity duration-300"
       onClick={handleClose}
     >
       <div 
-        className="bg-gray-800 rounded-xl shadow-2xl w-full max-w-md border border-gray-700 transform transition-all duration-300 scale-95 animate-in fade-in zoom-in"
+        className="bg-gray-800 bg-opacity-90 rounded-xl shadow-2xl w-full max-w-md border border-gray-700 transform transition-all duration-300 backdrop-blur-sm"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="p-6">
@@ -59,10 +64,10 @@ export const MobileWarningModal: React.FC<MobileWarningModalProps> = ({ isOpen, 
             </div>
             <h3 className="text-xl font-bold text-white mb-2">Mobile View Not Supported</h3>
             <div className="mt-4">
-              <p className="text-gray-300 mb-4">
+              <p className="text-gray-100 mb-4">
                 This application is not optimized for mobile devices. For the best experience, please use a desktop or tablet.
               </p>
-              <p className="text-gray-400 text-sm">
+              <p className="text-gray-300 text-sm">
                 You can continue using the app on mobile, but some features may not work as expected.
               </p>
             </div>
