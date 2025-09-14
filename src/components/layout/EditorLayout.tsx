@@ -12,16 +12,14 @@ export const EditorLayout: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isAutoSaveEnabled, setIsAutoSaveEnabled] = useState(true);
 
-  // Load sidebar state from localStorage on component mount
+  // Load sidebar state and auto-save setting from localStorage on component mount
   useEffect(() => {
     const savedSidebarState = localStorage.getItem('sidebarOpen');
     if (savedSidebarState !== null) {
       setIsSidebarOpen(JSON.parse(savedSidebarState));
     }
-  }, []);
-
-  // Load auto-save setting from localStorage on component mount
-  useEffect(() => {
+    
+    // Load auto-save setting from localStorage
     const savedAutoSaveState = localStorage.getItem('autoSaveEnabled');
     if (savedAutoSaveState !== null) {
       setIsAutoSaveEnabled(JSON.parse(savedAutoSaveState));

@@ -369,3 +369,10 @@ code {
     transform: translateY(0);
   }
 }
+
+/* Prevent zoom on input focus for mobile devices */
+@media screen and (max-width: 768px) {
+  input, textarea, select {
+    font-size: 16px; /* Prevents zoom on iOS Safari */
+  }
+}
