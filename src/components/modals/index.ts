@@ -5,3 +5,4 @@ export { default as MermaidModal } from './MermaidModal';
 export { default as CodeGeneratorModal } from './CodeGeneratorModal';
 export { default as ImageModal } from './ImageModal';
 export { default as TableOfContentsModal } from './TableOfContentsModal';
+export { MobileWarningModal } from './MobileWarningModal';
